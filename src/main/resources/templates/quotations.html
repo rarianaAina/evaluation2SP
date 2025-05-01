@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Devis fournisseurs</title></head>
+<body>
+<h2>Devis du fournisseur</h2>
+<table border="1">
+    <tr>
+        <th>Réf</th>
+        <th>Fournisseur</th>
+        <th>Date</th>
+        <th>Statut</th>
+        <th>Total</th>
+    </tr>
+    <tr th:each="q : ${quotations}">
+        <td th:text="${q.name}"></td>
+        <td th:text="${q.supplier}"></td>
+        <td th:text="${q.transaction_date}"></td>
+        <td th:text="${q.status}"></td>
+        <td th:text="${q.grand_total}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -17,7 +17,7 @@ public class HomeController {
     @Autowired
     FournisseurService fournisseurService;
 
-    @GetMapping("/")
+    @GetMapping("/dashboard")
     public String home(HttpSession session, Model model) {
 
         Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");

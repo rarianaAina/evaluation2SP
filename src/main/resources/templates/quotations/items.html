@@ -1,0 +1,46 @@
+<!-- src/main/resources/templates/quotations/items.html -->
+<div th:fragment="content">
+  <div class="container py-4">
+    <h2 class="mb-4 text-primary fw-bold border-bottom pb-2">
+      Devis fournisseur : <span th:text="${parentId}"></span>
+    </h2>
+
+    <div th:if="${success}" class="alert alert-success shadow-sm" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger shadow-sm" th:text="${error}"></div>
+
+    <div th:if="${quotationInfo != null}" class="mb-4 bg-light p-3 rounded border">
+      <p class="mb-1"><strong>Fournisseur :</strong> <span th:text="${quotationInfo.supplier}"></span></p>
+      <p class="mb-0"><strong>Date :</strong> <span th:text="${quotationInfo.transactionDate}"></span></p>
+    </div>
+
+    <div class="table-responsive shadow-sm">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-primary text-center">
+        <tr>
+          <th>Nom de l'article</th>
+          <!--<th>Description</th>-->
+          <th>Quantité</th>
+          <th>Tarif</th>
+          <th>Mettre à jour</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${quotationItems}">
+          <td th:text="${item.itemName}" class="fw-semibold">Item</td>
+          <!--<td th:text="${item.description}">Description</td>-->
+          <td th:text="${item.qty}">0</td>
+          <td th:text="${item.rate}">0.00</td>
+          <td>
+            <form th:action="@{/quotation-items}" method="post" class="d-flex gap-2 justify-content-end">
+              <input type="hidden" name="itemName" th:value="${item.name}" />
+              <!--<input type="hidden" name="parentId" th:value="${parentId}" />-->
+              <input type="number" step="0.01" name="newRate" class="form-control form-control-sm w-50" placeholder="Nouveau tarif" required />
+              <button type="submit" class="btn btn-sm btn-outline-primary">Mettre à jour</button>
+            </form>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
